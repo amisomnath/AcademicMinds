@@ -3,7 +3,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
 from school_management_system_api.models import StudentSubjectMapping, Teacher
-from school_management_system_api.serializers.student_subject_mapping_serializers import StudentSubjectMappingSerializer
 from school_management_system_api.serializers.teacher_serializers import TeacherSerializer
 
 
