@@ -19,16 +19,16 @@ class StudentSubjectMappingViewSet(generics.CreateAPIView):
     @transaction.atomic
     def post(self, request, *args, **kwargs):
         student_id = self.kwargs.get('student_id')
-        try:
-            student = Student.objects.get(id=student_id)
-        except ObjectDoesNotExist:
+        if not Student.objects.filter(id=student_id):
             raise StudentNotExistsException(detail=STUDENT_NOT_EXISTS.format(student_id))
-        subject_id = self.kwargs.get('subject_id')
+        else:
+            student = Student.objects.get(id=student_id)
 
-        try:
-            subject = Subject.objects.get(id=subject_id)
-        except ObjectDoesNotExist:
+        subject_id = self.kwargs.get('subject_id')
+        if not Subject.objects.filter(id=subject_id):
             raise SubjectNotExistsException(detail=SUBJECT_NOT_EXISTS.format(subject_id))
+        else:
+            subject = Subject.objects.get(id=subject_id)
 
         student_subject = StudentSubjectMapping.objects.update_or_create(student=student, subject=subject)
         obj = student_subject[0]
