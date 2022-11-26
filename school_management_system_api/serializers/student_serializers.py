@@ -10,12 +10,3 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Student
         fields = ('id', 'first_name', 'last_name', 'dob', 'address', 'phone')
-
-
-class StudentShortSerializer(serializers.ModelSerializer):
-    """Serializes a student short object"""
-
-    class Meta:
-        model = models.Student
-        fields = ('id',)
-

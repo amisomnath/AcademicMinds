@@ -30,6 +30,8 @@ class StudentSubjectMappingViewSet(generics.CreateAPIView):
         except ObjectDoesNotExist:
             raise SubjectNotExistsException(detail=SUBJECT_NOT_EXISTS.format(subject_id))
 
-        student_subject = StudentSubjectMapping.objects.create(student=student, subject=subject)
-        serializer = StudentSubjectMappingSerializer(student_subject).data
+        student_subject = StudentSubjectMapping.objects.update_or_create(student=student, subject=subject)
+        obj = student_subject[0]
+
+        serializer = StudentSubjectMappingSerializer(obj).data
         return Response(serializer, status=status.HTTP_201_CREATED)

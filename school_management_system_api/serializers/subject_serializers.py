@@ -8,11 +8,3 @@ class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Subject
         fields = ('id', 'subject_name', 'textbook')
-
-
-class SubjectShortSerializer(serializers.ModelSerializer):
-    """Serializes a subject short object"""
-
-    class Meta:
-        model = models.Subject
-        fields = ('id',)
