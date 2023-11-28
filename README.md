@@ -1,2 +1,2 @@
-# SchoolManagementSystem
+# AcademicMinds
  
